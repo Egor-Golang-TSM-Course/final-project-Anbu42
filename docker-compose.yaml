@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  hashing:
+    build:
+      context: ./hashing
+      dockerfile: Dockerfile
+    ports:
+      - "5051:5051"
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - hashing
