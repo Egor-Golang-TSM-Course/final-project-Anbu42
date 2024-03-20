@@ -53,7 +53,7 @@ func (s *Service) GetHashHandler(w http.ResponseWriter, r *http.Request) {
 
 	resp := pb.GetHashResponse{Hash: response.Hash}
 	w.Header().Set("Content-Type", "application/json")
-	if err := json.NewEncoder(w).Encode(resp); err != nil {
+	if err := json.NewEncoder(w).Encode(&resp); err != nil {
 		http.Error(w, "Error encoding response: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -74,7 +74,7 @@ func (s *Service) CreateHashHandler(w http.ResponseWriter, r *http.Request) {
 
 	resp := pb.CreateHashResponse{Hash: response.Hash}
 	w.Header().Set("Content-Type", "application/json")
-	if err := json.NewEncoder(w).Encode(resp); err != nil {
+	if err := json.NewEncoder(w).Encode(&resp); err != nil {
 		http.Error(w, "Error encoding response: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
