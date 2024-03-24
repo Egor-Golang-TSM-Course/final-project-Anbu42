@@ -10,10 +10,14 @@ gethash: ## gethash
 createhash: ## createhash
 	@curl -X POST -H "Content-Type: application/json" -d '{"payload": "your_payload_here"}' http://localhost:8080/createhash
 
-.PHONY: test
-test: ## run tests
+.PHONY: testunit
+testunit: ## run unit tests
 	@go test -v -cover hashing/...
 	@go test -v -cover gateway/...
+
+.PHONY: testintegration
+testintegration: deploy ## run integration tests
+	@go test -v gateway/test/integration_test.go
 
 .PHONY: deploy
 deploy: ## deploy
